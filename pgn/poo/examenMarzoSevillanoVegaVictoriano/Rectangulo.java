@@ -28,6 +28,10 @@ public class Rectangulo extends Figura {
 		setAltura(altura);
 	}
 
+	public Rectangulo(int ident) {
+		super(ident);
+	}
+
 	/**
 	 * Obtiene la base del restangulo
 	 * 
@@ -98,5 +102,8 @@ public class Rectangulo extends Figura {
 		return getClass().getSimpleName() + "\t\t" + super.toString() + "[base=" + getBase() + ", altura=" + getAltura()
 				+ "]\n";
 	}
+	
+	
+	
 
 }

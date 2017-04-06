@@ -23,7 +23,7 @@ public class Cuadrado extends Rectangulo {
 	 */
 	@Override
 	public String toString() {
-		return getClass().getSimpleName() + "\t\t" + "[identificador=" + super.getIdentificador() + " area=" + area()
+		return getClass().getSimpleName() + "\t\t" + "[identificador=" + getIdentificador() + " area=" + area()
 				+ ", perimetro=" + perimetro() + ", lado=" + getAltura() + "\n";
 	}
 }

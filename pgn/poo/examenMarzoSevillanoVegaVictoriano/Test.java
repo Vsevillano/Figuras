@@ -86,6 +86,10 @@ public class Test {
 	 * @param opcion
 	 */
 	private static void gestionarBajas(int opcion) {
+		if (figuritas.isEmpty()) {
+			System.out.println("Vacio");
+			return;
+		}
 		switch (opcion) {
 		case 1:
 			// Por identificador
@@ -97,7 +101,11 @@ public class Test {
 			break;
 		case 2:
 			// Por indice en la lista
-			figuritas.removeIndex();
+			try {
+				figuritas.removeIndex();
+			} catch (EliminarFiguritaException e) {
+				System.err.println(e.getMessage());
+			}
 			break;
 		}
 	}

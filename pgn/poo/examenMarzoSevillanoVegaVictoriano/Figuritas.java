@@ -61,7 +61,7 @@ public class Figuritas {
 	 * @return
 	 */
 	private double numeroAleatorio() {
-		return Math.round(Math.random() * 1000)/100d;
+		return Math.round(Math.random() * 100)/100d;
 	}
 
 	/**
@@ -138,12 +138,12 @@ public class Figuritas {
 	 * @throws EliminarFiguritaException
 	 */
 	void removeIdent(int ident) throws EliminarFiguritaException {
-		for (int i = 0; i < figuritas.size(); i++) {
-			if (figuritas.get(i).getIdentificador() == ident)
-				figuritas.remove(figuritas.get(i));
-			else
-				throw new EliminarFiguritaException("ERROR al eliminar la figura");
+		try {
+			figuritas.remove(new Rectangulo(ident));
+		} catch (IndexOutOfBoundsException e) {
+			throw new EliminarFiguritaException("ERROR no se pudo eliminar la figura");
 		}
+						
 	}
 
 	/**
@@ -161,8 +161,9 @@ public class Figuritas {
 
 	/**
 	 * Elimina un elemento de la lista por indice
+	 * @throws EliminarFiguritaException 
 	 */
-	void removeIndex() {
+	void removeIndex() throws EliminarFiguritaException {
 		int indice;
 		do {
 			menuBorrar = new Menu("** Elige una de las figuras a borrar", generarArrayFiguras());
@@ -175,13 +176,16 @@ public class Figuritas {
 	 * Realiza la baja por indice de la lista
 	 * 
 	 * @param indice
+	 * @throws EliminarFiguritaException 
 	 */
-	private void gestionarBaja(int indice) {
-		if (!(indice < 0 || indice >= figuritas.size())) {
-			Figura figura = figuritas.get(indice - 1);
-			if (figuritas.remove(figura))
-				System.out.println("Eliminada:\n" + figura);
-		}
+	private void gestionarBaja(int indice) throws EliminarFiguritaException {
+			try {
+				Figura figura = figuritas.get(indice - 1);
+				if (figuritas.remove(figura))
+					System.out.println("Eliminada:\n" + figura);
+			} catch (IndexOutOfBoundsException e) {
+				throw new EliminarFiguritaException("ERROR no se pudo eliminar la figura");
+			}
 	}
 
 	/**
@@ -208,6 +212,14 @@ public class Figuritas {
 	@Override
 	public String toString() {
 		return figuritas.size() + " Figuritas\n" + figuritas;
+	}
+
+	/**
+	 * Devuelve si la lista esta vacia o no
+	 * @return
+	 */
+	boolean isEmpty() {
+		return figuritas.isEmpty();
 	}
 
 }
