@@ -27,7 +27,11 @@ public class Rectangulo extends Figura {
 		setBase(base);
 		setAltura(altura);
 	}
-
+	
+	/**
+	 * Constructor por indice
+	 * @param ident
+	 */
 	public Rectangulo(int ident) {
 		super(ident);
 	}
@@ -102,8 +106,5 @@ public class Rectangulo extends Figura {
 		return getClass().getSimpleName() + "\t\t" + super.toString() + "[base=" + getBase() + ", altura=" + getAltura()
 				+ "]\n";
 	}
-	
-	
-	
 
 }

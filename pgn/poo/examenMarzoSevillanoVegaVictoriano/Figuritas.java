@@ -29,30 +29,58 @@ public class Figuritas {
 	/**
 	 * Crea 3 figuras de cada tipo
 	 */
-	void altaMasiva() {
+	String altaMasiva() {
 		for (int i = 0; i < 3; i++) {
-			try {
-				figuritas.add(new Rectangulo(numeroAleatorio(), numeroAleatorio()));
-			} catch (DimensionMenorQueCeroException e) {
-				System.err.println(e.getMessage());
-			}
-			try {
-				figuritas.add(new Cuadrado(numeroAleatorio()));
-			} catch (DimensionMenorQueCeroException e) {
-				System.err.println(e.getMessage());
-			}
-			try {
-				figuritas.add(new Circunferencia(numeroAleatorio()));
-			} catch (DimensionMenorQueCeroException e) {
-				System.err.println(e.getMessage());
-			}
-			try {
-				figuritas.add(new TrianguloRectangulo(numeroAleatorio(), numeroAleatorio()));
-			} catch (DimensionMenorQueCeroException e) {
-				System.err.println(e.getMessage());
-			}
+			annadirRectangulo();
+			annadirCuadrado();
+			annadirCirculo();
+			annadirTriangulo();
 		}
-		System.out.println(toString());
+		return toString();
+	}
+
+	/**
+	 * Añade un triangulo a la lista
+	 */
+	private void annadirTriangulo() {
+		try {
+			figuritas.add(new TrianguloRectangulo(numeroAleatorio(), numeroAleatorio()));
+		} catch (DimensionMenorQueCeroException e) {
+			System.err.println(e.getMessage());
+		}
+	}
+
+	/**
+	 * Añade un circulo a la lista
+	 */
+	private void annadirCirculo() {
+		try {
+			figuritas.add(new Circunferencia(numeroAleatorio()));
+		} catch (DimensionMenorQueCeroException e) {
+			System.err.println(e.getMessage());
+		}
+	}
+
+	/**
+	 * Añade un Cuadrado a la lista
+	 */
+	private void annadirCuadrado() {
+		try {
+			figuritas.add(new Cuadrado(numeroAleatorio()));
+		} catch (DimensionMenorQueCeroException e) {
+			System.err.println(e.getMessage());
+		}
+	}
+
+	/**
+	 * Añade un Rectangulo a la lista
+	 */
+	private void annadirRectangulo() {
+		try {
+			figuritas.add(new Rectangulo(numeroAleatorio(), numeroAleatorio()));
+		} catch (DimensionMenorQueCeroException e) {
+			System.err.println(e.getMessage());
+		}
 	}
 
 	/**
@@ -61,7 +89,7 @@ public class Figuritas {
 	 * @return
 	 */
 	private double numeroAleatorio() {
-		return Math.round(Math.random() * 100)/100d;
+		return Math.round(Math.random() * 100) / 100d;
 	}
 
 	/**
@@ -112,13 +140,13 @@ public class Figuritas {
 	/**
 	 * Lista el numero de triangulos
 	 */
-	void listarTriangulos() {
+	String listarTriangulos() {
 		int contador = 0;
 		for (Figura figura : figuritas) {
 			if (figura instanceof TrianguloRectangulo)
 				contador++;
 		}
-		System.out.println("Total de triángulos: " + contador);
+		return "Total de triángulos: " + contador;
 
 	}
 
@@ -143,7 +171,7 @@ public class Figuritas {
 		} catch (IndexOutOfBoundsException e) {
 			throw new EliminarFiguritaException("ERROR no se pudo eliminar la figura");
 		}
-						
+
 	}
 
 	/**
@@ -151,7 +179,7 @@ public class Figuritas {
 	 * 
 	 * @return
 	 */
-	public String[] generarArrayFiguras() {
+	private String[] generarArrayFiguras() {
 		String[] opcionesMenu = new String[figuritas.size()];
 		for (int i = 0; i < figuritas.size(); i++) {
 			opcionesMenu[i] = figuritas.get(i).toString();
@@ -161,7 +189,8 @@ public class Figuritas {
 
 	/**
 	 * Elimina un elemento de la lista por indice
-	 * @throws EliminarFiguritaException 
+	 * 
+	 * @throws EliminarFiguritaException
 	 */
 	void removeIndex() throws EliminarFiguritaException {
 		int indice;
@@ -176,16 +205,16 @@ public class Figuritas {
 	 * Realiza la baja por indice de la lista
 	 * 
 	 * @param indice
-	 * @throws EliminarFiguritaException 
+	 * @throws EliminarFiguritaException
 	 */
 	private void gestionarBaja(int indice) throws EliminarFiguritaException {
-			try {
-				Figura figura = figuritas.get(indice - 1);
-				if (figuritas.remove(figura))
-					System.out.println("Eliminada:\n" + figura);
-			} catch (IndexOutOfBoundsException e) {
-				throw new EliminarFiguritaException("ERROR no se pudo eliminar la figura");
-			}
+		try {
+			Figura figura = figuritas.get(indice - 1);
+			if (figuritas.remove(figura))
+				System.out.println("Eliminada:\n" + figura);
+		} catch (IndexOutOfBoundsException e) {
+			throw new EliminarFiguritaException("ERROR no se pudo eliminar la figura");
+		}
 	}
 
 	/**
@@ -216,6 +245,7 @@ public class Figuritas {
 
 	/**
 	 * Devuelve si la lista esta vacia o no
+	 * 
 	 * @return
 	 */
 	boolean isEmpty() {

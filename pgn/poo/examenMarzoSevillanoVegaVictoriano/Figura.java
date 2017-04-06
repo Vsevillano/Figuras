@@ -21,7 +21,7 @@ public abstract class Figura {
 	public Figura() {
 		setIdentificador();
 	}
-	
+
 	public Figura(int ident) {
 		this.identificador = ident;
 	}

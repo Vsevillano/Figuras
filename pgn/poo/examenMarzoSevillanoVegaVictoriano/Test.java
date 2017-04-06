@@ -75,7 +75,7 @@ public class Test {
 			break;
 		default:
 			// Salir
-			System.out.println("Aaadios!");
+			System.out.println("Saliendo del programa...");
 			break;
 		}
 	}
@@ -87,7 +87,7 @@ public class Test {
 	 */
 	private static void gestionarBajas(int opcion) {
 		if (figuritas.isEmpty()) {
-			System.out.println("Vacio");
+			System.out.println("La lista está vacia");
 			return;
 		}
 		switch (opcion) {
@@ -107,6 +107,10 @@ public class Test {
 				System.err.println(e.getMessage());
 			}
 			break;
+		default:
+			// Salir
+			System.out.println("Volviendo al menu principal");
+			break;
 		}
 	}
 
@@ -123,11 +127,15 @@ public class Test {
 			break;
 		case 2:
 			// Triangulos
-			figuritas.listarTriangulos();
+			System.out.println(figuritas.listarTriangulos());
 			break;
 		case 3:
 			// Del reves
 			figuritas.listarDelReves();
+			break;
+		default:
+			// Salir
+			System.out.println("Volviendo al menu principal...");
 			break;
 		}
 	}
@@ -141,11 +149,15 @@ public class Test {
 		switch (opcion) {
 		case 1:
 			// Masivas
-			figuritas.altaMasiva();
+			System.out.println(figuritas.altaMasiva());
 			break;
 		case 2:
 			// Selectivas
 			figuritas.altaSelectiva();
+			break;
+		default:
+			// Salir
+			System.out.println("Volviendo al menu principal...");
 			break;
 		}
 	}
